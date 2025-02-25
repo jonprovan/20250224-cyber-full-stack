@@ -1,5 +1,8 @@
 package com.skillstorm;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class ControlFlow {
 
 	public static void main(String[] args) {
@@ -132,6 +135,74 @@ public class ControlFlow {
 			break;
 		}
 		
+		// enhanced for (some people call this a foreach)
+		// this is great for simply iterating through Collections/arrays that are iterable (LinkedList, Set)
+		// some Collections are not iterable, like HashMap
+		// disadvantage is we don't have direct access to the loop index
+		for (int num : nums) {
+			num = num + 4;
+			System.out.println(num);
+		}
+		
+		// the local variable num in the above loop is pass-by-value and has no effect on the original array
+		// just like our pass-by-reference examples
+		for (int num : nums) {
+			System.out.println(num);
+		}
+		
+		List<String> names = new LinkedList<>();
+		names.add("Muhiddin");
+		names.add("Dhruv");
+		names.add("Leah");
+		
+		for (String singleName : names) {
+			System.out.println(singleName);
+		}
+		
+		// BREAK AND CONTINUE
+		// break will end the loop entirely, moving on to the next piece of code
+		// continue will end THIS ITERATION but move on to the next iteration without breaking the overall loop
+		
+		System.out.println("\nBefore...");
+		
+		for (int i = 0; i < 5; i++) {
+			if (i == 2)
+				continue; // can only use in loops, not switches, etc.! #LiamResearchFTW
+			if (i == 4)
+				break;
+			System.out.println("Loop Index = " + i);
+		}
+		
+		System.out.println("...and after\n");
+		
+		// LOOP LABELS
+		// we can label individual loops in a nested-loop situation to take action on a specific loop
+		int[][] numsWithinNums = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
+		
+		// you can label loops to access them from other loops
+		// we can then break/continue either loop by calling it
+		OUTER: for (int i = 0; i < numsWithinNums.length; i++) {
+			
+			System.out.println("Outer Loop Index = " + i);
+			
+			// must use a different variable name here, because i is still in scope from the outer array
+			INNER: for (int j = 0; j < numsWithinNums[i].length; j++) {
+				
+				if (i == 2)
+					break OUTER;
+				
+				if (i == 1)
+					continue OUTER;
+				
+				if (j == 1)
+					break INNER;
+				
+				System.out.println("Inner Loop Index = " + j);
+				
+				System.out.println(numsWithinNums[i][j]);
+			}
+			
+		}
 		
 
 	}

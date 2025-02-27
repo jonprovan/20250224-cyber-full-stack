@@ -48,9 +48,9 @@ public class JavaStreamAPI {
 		 * if the function returns something and is one line only WITH NO BRACES, return keyword NOT required
 		 * if braces are used, regardless of the number of lines, return keyword REQUIRED (if not void)
 		 * 
-		 * () -> System.out.println("abc");
-		 * () -> { System.out.println("abc"); System.out.println("xyz") };
-		 * () -> "abc";
+		 * () -> System.out.println("abc")
+		 * () -> { System.out.println("abc"); System.out.println("xyz"); }
+		 * () -> "abc"
 		 * () -> { return "abc"; }
 		 * 
 		 */

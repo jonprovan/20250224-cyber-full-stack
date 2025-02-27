@@ -155,7 +155,103 @@ public class JavaStreamAPI {
 		
 		if (strResult.isPresent())
 			System.out.println(strResult.get());
-
+		
+		// with custom objects
+		System.out.println("\nCustom Objects:");
+		
+		LinkedList<Book> books = new LinkedList<>();
+		
+		books.add(new Book("Harry Potter", "J.K. Rowling", "Fantasy", 434));
+		books.add(new Book("It", "Stephen King", "Horror", 1138));
+		books.add(new Book("The Lord Of The Rings", "J.R.R. Tolkien", "Fantasy", 1178));
+		books.add(new Book("Where the Sidewalk Ends", "Shel Silverstein", "Poetry", 192));
+		books.add(new Book("Logical Chess", "Irving Chernev", "Chess", 1957));
+		books.add(new Book("Eragon", "Christopher Paolini", "Fantasy", 544));
+		books.add(new Book("The Hitchhiker's Guide to the Galaxy", "Douglas Adams", "Science Fiction", 208));
+//		books.add(new Book("Test Fantasy", "Joe Testington", "Fantasy", 123));
+		
+		/*
+		 * we want only a single title to come out of this
+		 * ALL ONE SERIES OF STREAM OPERATIONS!
+		 * 
+		 * 
+		 * 1. change all authors to have a " X" at the end  ***
+		 * 2. print out all authors							***
+		 * 3. remove books longer than 1000 pages			***
+		 * 4. print out remaining book titles				***
+		 * 5. remove all books that aren't Fantasy			***
+		 * 6. print out all remaining book titles			***
+		 * 7. return the title of the shortest book
+		 */
+		
+		String resultingTitle = 
+		
+		books.stream()
+			 .map(element -> {
+					 Book book = new Book(element.title, element.author + " X", element.genre, element.pages);
+					 System.out.println("Updated Author: " + book.author);
+					 return book;
+				 })
+			 .filter(element -> {
+					 if (element.pages > 1000)
+						 return false;
+					 else {
+						 System.out.println("Less than 1000 pages: " + element.title);
+						 return true;
+					 } 
+				 })
+			 .filter(element -> {
+					 if (!element.genre.equals("Fantasy"))
+						 return false;
+					 else {
+						 System.out.println("Fantasy Title: " + element.title);
+						 return true;
+					 }
+				 })
+			 .reduce((book1, book2) -> {
+				 // using a ternary operator to shorthand the if/else
+//				 if (book1.pages > book2.pages)
+//					 return book2;
+//				 else
+//					 return book1;
+				 
+				 // this is a ternary operator
+				 // it has the same logic as the above code
+				 // if the boolean question in the parentheses is true, it returns the item before the colon
+				 // otherwise, it returns the item after the colon
+				 System.out.println("Entered the reduce function with " + book1.title + " and " + book2.title);
+				 
+				 return (book1.pages > book2.pages) ? book2 : book1;
+			 }).get().title;
+		
+		System.out.println("\n" + resultingTitle + "...WINS!!");
 	}
 
 }
+
+class Book {
+	
+	String title;
+	String author;
+	String genre;
+	int pages;
+	
+	Book(String title, String author, String genre, int pages) {
+		super();
+		this.title = title;
+		this.author = author;
+		this.genre = genre;
+		this.pages = pages;
+	}
+
+	@Override
+	public String toString() {
+		return "Book [title=" + title + ", author=" + author + ", genre=" + genre + ", pages=" + pages + "]";
+	}
+	
+}
+
+
+
+
+

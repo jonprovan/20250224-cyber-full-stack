@@ -1,0 +1,41 @@
+REST, HTTP & Idempotency Concepts
+
+HTTP = HyperText Transfer Protocol
+
+- how information is transferred on the web
+- the client makes a request of a certain HTTP request type (HTTP request)
+- the server sends back an HTTP response
+
+- Request Types (in CRUD order):
+-- POST - adding one or more new records to the database, more generally sending something to the app
+-- GET - select and read some data, return it
+-- PUT - update one or more items, by updating the ENTIRETY of each item (overwriting the entire object)
+-- DELETE - remove one or more records from the database/app
+-- others include PATCH, OPTIONS, etc.
+
+Idempotency & CRUD
+(assuming no one else is changing the DB in the meantime)
+- if you make a request to the DB, then make the exact same request again
+- the state of the DB after the first request is IDENTICAL to the state after the second request
+- Read = idempotent
+- Create = should NOT be idempotent, new record created each time
+- Update (via PUT) = idempotent, since it overwrites the ENTIRE record, so the record's state will match
+- Delete = idempotent, as after the first or any subsequent deletion, there is no record at that location
+
+REST = 'Re'presentational 'S'tate 'T'ransfer
+API = Application Programming Interface
+- the "state" refers to the data we're transferring between server and client
+- the state shouldn't change in transfer
+- but the representation DOES -> 
+- - DB record -> serialized content -> Java object -> JSON object -> JS object -> display text/images/etc.
+
+REST Principles
+- Stateless -- the server has NO MEMORY of previous users/requests/sessions, etc.
+	- each request MUST include ALL the information needed to process it
+- Client/Server -- API rules/endpoints must define a set interface
+- Uniform interface -- endpoints must follow a clear structure and be accessible from ANY application
+- Layered system -- the client is unaware which or how many servers are processing their request
+- Cacheable -- the server tells the client which of its served resources are cacheable
+- Code on demand -- server can provide code to be run on client-side in some sort of virtual machine
+
+

@@ -52,6 +52,16 @@ public class CalculatorTests {
 	}
 	
 	@Test
+	public void calcConstruction() {
+		System.out.println("calcConstruction...");
+		Calculator temp = new Calculator("Temp");
+		// not necessarily recommended to make multiple assertions in the same test
+		// but it is possible
+		assertEquals(Calculator.class, temp.getClass());
+		assertEquals("Temp", temp.name);
+	}
+	
+	@Test
 	public void basicAddition() {
 		System.out.println("basicAddition...");
 		int result = 0;
@@ -69,13 +79,48 @@ public class CalculatorTests {
 	@Test(expected = IllegalArgumentException.class)
 	public void divideByZero() {
 		System.out.println("divideByZero...");
-		int result = calc.divide(9, 0);
+		double result = calc.divide(9, 0);
 	}
 	
 	@Test(expected = OutOfBoundsException.class)
 	public void integerOverflow() throws OutOfBoundsException {
 		System.out.println("integerOverflow...");
 		int result = calc.add(2000000000, 1000000000);
+	}
+	
+	@Test(expected = OutOfBoundsException.class)
+	public void integerUnderflow() throws OutOfBoundsException {
+		System.out.println("integerUnderflow...");
+		int result = calc.add(-2000000000, -1000000000);
+	}
+	
+	// to test for the correct exception when overflowing in the multiply method
+	@Test(expected = OutOfBoundsException.class)
+	public void multiplicationOverflow() throws OutOfBoundsException {
+		System.out.println("multiplicationOverflow...");
+		int result = calc.multiply(Integer.MAX_VALUE, Integer.MAX_VALUE);
+	}
+	
+	@Test
+	public void basicMultiplication() {
+		System.out.println("basicMultiplication...");
+		int result = 0;
+		try {
+			result = calc.multiply(5, 7);
+		} catch (OutOfBoundsException e) {
+			e.printStackTrace();
+		}
+		assertEquals(35, result);
+	} 
+	
+	// testing for proper division accuracy
+	@Test
+	public void divisionAccuracy() {
+		System.out.println("divisionAccuracy...");
+		double result = calc.divide(1, 3);
+		// when dealing with potentially imprecise results
+		// we can use the third parameter of assertEquals to set a "delta" or margin of error
+		assertEquals(0.3333, result, 0.0001);
 	}
 	
 	@After
@@ -90,3 +135,20 @@ public class CalculatorTests {
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

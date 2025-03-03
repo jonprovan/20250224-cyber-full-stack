@@ -18,20 +18,35 @@ public class Calculator {
 		return x + y;
 	}
 	
-	public int subtract(int x, int y) {
-		return x - y;
+	public int subtract(int x, int y) throws OutOfBoundsException {
+		
+		long result = (long)x - (long)y;
+		
+		if(result > Integer.MAX_VALUE || result < Integer.MIN_VALUE)
+			throw new OutOfBoundsException();
+		
+		return x - y; 
 	}
 	
-	public int multiply(int x, int y) {
+	public int multiply(int x, int y) throws OutOfBoundsException {
+		
+		long result = (long)x * (long)y;
+		
+		if(result > Integer.MAX_VALUE || result < Integer.MIN_VALUE)
+			throw new OutOfBoundsException();
+		
 		return x * y;
 	}
-	
+	 
 	// IllegalArgumentException is a RuntimeException, so you don't have to declare that this method throws it
-	public int divide(int x, int y) {
+	// changed the return type to double to allow for decimal responses
+	// could refactor to take in doubles to avoid the casting...but careful of other edge cases!
+	public double divide(int x, int y) {
 		if (y == 0)
 			throw new IllegalArgumentException();
 		
-		return x / y;
+		// we must cast to double BEFORE dividing, otherwise it'll send an int to the return anyway
+		return (double)x / (double)y;
 	}
 
 }

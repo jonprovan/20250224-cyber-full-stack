@@ -15,6 +15,11 @@
 
 # creating our overall database
 -- backticks optional but helpful for readability
+
+##############################################################################################################################################
+########## RUN THIS COMMAND, THEN DOUBLE-CLICK THE 'food' DB IN THE SCHEMAS PANE AND RUN THE REST OF THE CREATE/INSERT STATEMENTS!! ##########
+##############################################################################################################################################
+
 CREATE SCHEMA `food`;
 
 # creating our tables
@@ -107,24 +112,58 @@ CREATE TABLE `food`.`recipe_category` (
 INSERT INTO ingredient(ingredient_name, ingredient_type) VALUES('Ground Beef', 'Meat');
 INSERT INTO ingredient(ingredient_name, ingredient_type) VALUES('Cayenne Pepper', 'Spice'),
 															   ('Swiss Chard', 'Vegetable'),
-															   ('Green Onions', 'Vegetable');
+															   ('Green Onion', 'Vegetable'),
+															   ('Chicken', 'Poultry'),
+															   ('Balsamic Marinade', 'Condiment'),
+															   ('Garlic Flatbread', 'Starch'),
+															   ('Tagliatelle', 'Starch'),
+															   ('Tomato Paste', 'Condiment'),
+															   ('Cuban Bread', 'Starch'),
+															   ('Pulled Pork', 'Meat'),
+															   ('Sweet Ham', 'Meat'),
+															   ('Mustard', 'Condiment'),
+															   ('Pickle', 'Vegetable'),
+															   ('Tortilla', 'Starch'),
+															   ('Mexican Blend Cheese', 'Dairy'),
+															   ('Hamburger Bun', 'Starch'),
+															   ('Peanut Butter', 'Condiment'),
+                                                               ('Honey', 'Condiment'),
+                                                               ('Mint', 'Vegetable');
                                                                
 INSERT INTO category(category_name) VALUES('Entree'), ('Appetizer'), ('Dessert'), ('Beverage'), ('Snack'), ('Soup'), ('Salad');
 
 -- single or double quotes are fine for strings
 INSERT INTO bio(cook_description) VALUES("This is Dave, he cooks with an old Hedley Bennett apron, his Japanese Santoku, and an old restaurant towel in hand."),
-										('This is Jon. He cannot cook and cannot learn. He is hopeless and shameless.');
+										('This is Jon. He cannot cook and cannot learn. He is hopeless and shameless.'),
+										("This is Cheffulous, and none other's cuisine can compare. Except Dave's. But definitely not Jon's.");
 
-INSERT INTO cook(first_name, last_name, bio) VALUES('Dave', 'Lazaro', 1), ('Jon', 'Provan', 2);
+INSERT INTO cook(first_name, last_name, bio) VALUES('Dave', 'Lazaro', 1), ('Jon', 'Provan', 2), ('Cheffulous', 'Von Cookerton', 3);
 
-INSERT INTO recipe(recipe_name, recipe_description, cook) VALUES('Marinated Chicken', 'Drool-worthy chicken with flatbread on the side.', 1),
-															    ('Tagliatelle alla Bolognese', 'Italian ragu-style with long pasta.', 1),
-																('Cuban Sandwich', 'Cuban bread cradling pulled pork, sweet ham, mustard and pickles.', 1),
-                                                                ('The Total Mess', 'A whole bunch of stuff, whatever is left in the fridge.', 2);
+INSERT INTO recipe(recipe_name, recipe_description, cook) VALUES('Marinated Chicken', 'Drool-worthy chicken with flatbread on the side', 1),
+															    ('Tagliatelle alla Bolognese', 'Italian ragu-style with long pasta', 1),
+																('Cuban Sandwich', 'Cuban bread cradling pulled pork, sweet ham, mustard and pickles', 1),
+                                                                ('The Total Mess', 'A whole bunch of stuff, whatever is left in the fridge', 2),
+                                                                ('Cheese Burrito', 'When you have neither time, nor skill, nor sense of smell', 2),
+                                                                ('Peanut Butter Buns', "Eatin' down the pantry? Look no further", 2),
+                                                                ('Flatbread Mojito', 'Saving time by eating and drinking simultaneously', 3),
+                                                                ('Tex-Mex Chicken Chili', 'Zingier than an electric shock to the armpit', 3),
+                                                                ('Green Whatchamacallit', "Doesn't mix? Doesn't matter", 3);
                                                                 
-INSERT INTO recipe_category(recipe_id, category_id) VALUES(1, 1), (2, 1), (3, 5), (4, 2);
+INSERT INTO recipe_category(recipe_id, category_id) VALUES(1, 1), (2, 1), (3, 5), (4, 2), (5, 5), (6, 3), (7, 4), (8, 6), (9, 7);
 
-INSERT INTO recipe_ingredient(recipe_id, ingredient_id, amount) VALUES(4, 1, 'Six pounds'), (4, 2, 'A shovelful'), (4, 3, 'One-tenth of a teaspoon'), (4, 4, 'As many as fit');
+INSERT INTO recipe_ingredient(recipe_id, ingredient_id, amount) VALUES(1, 5, 'One whole'), (1, 6, 'Two loaves'), (1, 7, 'Three pints'),
+																	  (2, 8, 'Two boxes'), (2, 9, 'One quarter cup'), (2, 1, 'Two pounds'),
+                                                                      (3, 10, 'One roll'), (3, 11, 'One quarter pound'), (3, 12, 'One quarter pound'), (3, 13, 'Two tablespoons'), (3, 14, 'Six slices'),
+																	  (4, 1, 'Six pounds'), (4, 2, 'A shovelful'), (4, 3, 'One-tenth of a teaspoon'), (4, 4, 'As many as fit'),
+                                                                      (5, 15, 'Three burrito-sized'), (5, 16, 'The rest of the bag'),
+                                                                      (6, 17, 'Two'), (6, 18, 'One scoop each'), (6, 19, "Enough to drip all over"),
+                                                                      (7, 7, 'One stick'), (7, 19, '16 fluid ounces'), (7, 20, 'Six leaves'),
+                                                                      (8, 2, 'Two tablespoons'), (8, 4, 'One medium-sized'), (8, 5, 'Twelve ounces'), (8, 15, 'One large, cut in triangles'), (8, 16, 'One cup'),
+                                                                      (9, 3, 'One bucket'), (9, 4, 'One half bucket'), (9, 14, 'Two buckets'), (9, 20, 'Three quarters of a bucket');
+
+#################################################                                                                      
+########## STOP RUNNING SCRIPT HERE!!! ##########
+#################################################                                                                      
 
 -- updating a record
 -- this will change EVERY record where the 'where' clause is true, so this is a little unsafe
@@ -160,6 +199,15 @@ SELECT * FROM recipe
 	JOIN recipe_ingredient ON recipe.id = recipe_ingredient.recipe_id
     JOIN ingredient ON ingredient.id = recipe_ingredient.ingredient_id;
     
+SELECT first_name, last_name, cook_description, recipe_name, recipe_description, category_name, ingredient_name, ingredient_type, amount
+	FROM cook
+	JOIN bio on cook.bio = bio.id
+    JOIN recipe on recipe.cook = cook.id
+    JOIN recipe_category ON recipe.id = recipe_category.recipe_id
+    JOIN category ON category.id = recipe_category.category_id
+    JOIN recipe_ingredient ON recipe.id = recipe_ingredient.recipe_id
+    JOIN ingredient ON ingredient.id = recipe_ingredient.ingredient_id;
+    
 # TRANSACTIONS
 -- by default, MySQL is autocommitted
 -- turn this off like this (this is SUPPOSED to work)
@@ -168,7 +216,7 @@ INSERT INTO category(category_name) VALUES('Sample');
 -- roll back to before the last transaction began using this:
 ROLLBACK;
 
--- not a great way to run a transaction in MySQL Workbench without a stored procedure if we want to use conditional logic
+-- not a great way to run a transaction in MySQL Workbench if we want to use conditional logic
 -- we can work around this with a stored procedure
 
 -- a stored procedure is a method we can call to run a block of code, including conditional logic
@@ -181,11 +229,11 @@ ROLLBACK;
 delimiter //
 CREATE PROCEDURE sample_procedure (IN cat_name VARCHAR(32)) -- include parameters and returns here
 	BEGIN
-		DECLARE result_name VARCHAR(32);
+		DECLARE result_name VARCHAR(32); -- a local variable to use
 
 		START TRANSACTION;
 			INSERT INTO category(category_name) VALUES(cat_name);
-			SET result_name = (SELECT category_name FROM category WHERE category_name = cat_name);
+			SET result_name = (SELECT category_name FROM category WHERE category_name = cat_name); -- assigning the return value to the local variable
 			IF result_name = 'Sample' THEN
 				ROLLBACK;
 			ELSE

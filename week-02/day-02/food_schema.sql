@@ -159,11 +159,39 @@ SELECT recipe_name, recipe_description, category_name FROM recipe
 SELECT * FROM recipe 
 	JOIN recipe_ingredient ON recipe.id = recipe_ingredient.recipe_id
     JOIN ingredient ON ingredient.id = recipe_ingredient.ingredient_id;
+    
+# TRANSACTIONS
+-- by default, MySQL is autocommitted
+-- turn this off like this (this is SUPPOSED to work)
+SET autocommit=0;
+INSERT INTO category(category_name) VALUES('Sample');
+-- roll back to before the last transaction began using this:
+ROLLBACK;
 
+-- not a great way to run a transaction in MySQL Workbench without a stored procedure if we want to use conditional logic
+-- we can work around this with a stored procedure
 
-  
-  
-  
-  
-  
-  
+-- a stored procedure is a method we can call to run a block of code, including conditional logic
+-- e.g., insert a record, check something, then either commit it or roll back
+
+-- inside, we have a transaction, and until we either commit or roll back the transaction, anything within it is temporary
+-- but, we can package multiple statements together, then either commit them all or reverse them
+
+-- changing the delimiter temporarily so we can include semi-colons in the procedure stored in the database
+delimiter //
+CREATE PROCEDURE sample_procedure (IN cat_name VARCHAR(32)) -- include parameters and returns here
+	BEGIN
+		DECLARE result_name VARCHAR(32);
+
+		START TRANSACTION;
+			INSERT INTO category(category_name) VALUES(cat_name);
+			SET result_name = (SELECT category_name FROM category WHERE category_name = cat_name);
+			IF result_name = 'Sample' THEN
+				ROLLBACK;
+			ELSE
+				COMMIT;
+			END IF;
+	END //
+delimiter ; -- changing the delimiter back
+
+CALL sample_procedure('Sample');

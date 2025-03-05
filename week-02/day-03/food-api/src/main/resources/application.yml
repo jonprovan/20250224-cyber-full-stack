@@ -1,0 +1,20 @@
+# YAML or .yml files have a different structure that may be more readable
+# this file contains ALL the same information as our application.properties file (as of 11:18am on 3/5)
+# whichever you prefer is just fine!
+
+# for notes on some of these properties, check out _application.properties
+
+spring:
+  application:
+    name: food-api
+  datasource:
+    url: jdbc:mysql://localhost:3306/food
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+server:
+  port: 8080

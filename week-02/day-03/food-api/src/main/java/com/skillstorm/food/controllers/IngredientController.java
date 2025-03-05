@@ -51,7 +51,7 @@ public class IngredientController {
 	// find by id
 	// we use this syntax to set up a path variable that will get filled with whatever's in the URL at this spot
 	// we also annotate the variable in the parameters with @PathVariable
-	// if the parameter name matches the path variable name, you DO NOT need the ("name") part
+	// if the parameter name matches the path variable name, you DO NOT need the ("idNumber") part after @PathVariable
 	// if it DOES NOT match, you do
 	@GetMapping("/{idNumber}")
 	public ResponseEntity<Ingredient> findById(@PathVariable("idNumber") int id) {
@@ -61,6 +61,7 @@ public class IngredientController {
 	// create one
 	// even though this has the same endpoint suffix as our findAll() method, it's a different HTTP request type
 	// to indicate a parameter is coming via the body, use @RequestBody
+	// using our DTO so the user cannot include an id
 	@PostMapping
 	public ResponseEntity<Ingredient> createOne(@RequestBody IngredientDTO ingredientDTO) {
 		return service.createOne(ingredientDTO);

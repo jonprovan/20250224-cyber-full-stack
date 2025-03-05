@@ -73,6 +73,10 @@ public class IngredientService {
 	}
 	
 	// create one
+	// this takes in our DTO, because we don't want the user sending an id
+	// also, the repo.save() method IS BOTH CREATE AND UPDATE!!
+	// if we include an existing id, it will update it
+	// if we include a non-existing id, it will ignore the id and create a new record
 	public ResponseEntity<Ingredient> createOne(IngredientDTO ingredientDTO) { 
 		try {
 			return ResponseEntity.status(HttpStatus.CREATED)

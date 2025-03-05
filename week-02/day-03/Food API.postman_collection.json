@@ -109,11 +109,6 @@
 			"key": "baseUrl",
 			"value": "localhost:8080",
 			"type": "string"
-		},
-		{
-			"key": "ingredientSuffix",
-			"value": "/ingredient",
-			"type": "string"
 		}
 	]
 }

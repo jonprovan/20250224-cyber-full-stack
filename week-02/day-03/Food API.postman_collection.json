@@ -10,7 +10,7 @@
 			"name": "Ingredient",
 			"item": [
 				{
-					"name": "Find All",
+					"name": "Find All (opt. type param)",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -24,6 +24,13 @@
 							],
 							"path": [
 								"ingredient"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "<type value>",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -74,6 +81,57 @@
 							],
 							"path": [
 								"ingredient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update One",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ingredientName\": \"<insert name here>\",\r\n    \"ingredientType\": \"<insert type here>\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/ingredient/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ingredient",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete By Id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ingredient/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ingredient",
+								"1"
 							]
 						}
 					},

@@ -1,11 +1,14 @@
 package com.skillstorm.food.controllers;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skillstorm.food.dtos.IngredientDTO;
@@ -43,9 +46,10 @@ public class IngredientController {
 	// find all
 	// this annotation marks this as a GET method
 	// if we need an additional suffix, we can include it like @GetMapping("/suffix")
+	// we're using an optional RequestParam (also referred to as a query parameter) to take in a string by which to filter
 	@GetMapping
-	public ResponseEntity<Iterable<Ingredient>> findAll() {
-		return service.findAll();
+	public ResponseEntity<Iterable<Ingredient>> findAll(@RequestParam(name = "type", required = false) String type) {
+		return service.findAll(type);
 	}
 	
 	// find by id
@@ -65,6 +69,19 @@ public class IngredientController {
 	@PostMapping
 	public ResponseEntity<Ingredient> createOne(@RequestBody IngredientDTO ingredientDTO) {
 		return service.createOne(ingredientDTO);
+	}
+	
+	// update one
+	@PutMapping("/{id}")
+	public ResponseEntity<Ingredient> updateOne(@PathVariable int id, @RequestBody IngredientDTO ingredientDTO) {
+		return service.updateOne(id, ingredientDTO);
+	}
+	
+	// delete one
+	// delete methods return void and are "successful" whether there was a record at that id or not
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> deleteById(@PathVariable int id) {
+		return service.deleteById(id);
 	}
 	
 	

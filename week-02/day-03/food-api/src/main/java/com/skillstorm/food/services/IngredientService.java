@@ -51,13 +51,26 @@ public class IngredientService {
 	// we want to return a ResponseEntity, so we have control over the status code, headers, etc.
 	// ResponseEntity uses a builder pattern to assemble an HttpResponse
 	// it automatically returns an HttpErrorResponse if we use a 400/500-level status code
-	public ResponseEntity<Iterable<Ingredient>> findAll() { 
+	// taking in our RequestParam here
+	public ResponseEntity<Iterable<Ingredient>> findAll(String type) {
 		
-		Iterable<Ingredient> ingredients = repo.findAll();
+		Iterable<Ingredient> ingredients;
+		
+		// if the given value for type is null, grab every Ingredient
+		if (type == null) {
+			ingredients = repo.findAll();
+		// otherwise, use our custom method to grab only the ones that match the type
+		} else {
+			ingredients = repo.findAllByType(type);
+		}
+		
+		// regardless of whether it's all of them, all of one type, or if there are no records in the DB or for that type
+		// return a successful response indicating so
 		if (!ingredients.iterator().hasNext())
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).body(ingredients);
 		else
 			return ResponseEntity.status(HttpStatus.OK).body(ingredients);
+		
 	}
 	
 	// find by id
@@ -77,6 +90,7 @@ public class IngredientService {
 	// also, the repo.save() method IS BOTH CREATE AND UPDATE!!
 	// if we include an existing id, it will update it
 	// if we include a non-existing id, it will ignore the id and create a new record
+	// so, we include a 0 id (which will never exist) to ensure we're creating a new one
 	public ResponseEntity<Ingredient> createOne(IngredientDTO ingredientDTO) { 
 		try {
 			return ResponseEntity.status(HttpStatus.CREATED)
@@ -85,6 +99,27 @@ public class IngredientService {
 			return ResponseEntity.status(500).body(null);
 		}
 		
+	}
+	
+	// update one
+	// we need to check if the record with the given id exists first
+	// otherwise, if it doesn't, we'll create a new one, which we don't want
+	public ResponseEntity<Ingredient> updateOne(int id, IngredientDTO ingredientDTO) {
+		if (repo.existsById(id))
+			return ResponseEntity.status(HttpStatus.OK)
+					 			 .body(repo.save(new Ingredient(id, ingredientDTO.ingredientName(), ingredientDTO.ingredientType())));
+		else
+			return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(null);
+	}
+	
+	// delete one
+	public ResponseEntity<Void> deleteById(int id) {
+		try {
+			repo.deleteById(id); // this will NOT throw an exception if the record with this id is not in the DB
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build(); // can't use the .body() method because the RE is Void
+		} catch (Exception e) {
+			return ResponseEntity.status(500).build();
+		}
 	}
 	
 	

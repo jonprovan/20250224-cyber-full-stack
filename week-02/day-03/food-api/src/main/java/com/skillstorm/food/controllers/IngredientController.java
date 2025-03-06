@@ -47,6 +47,7 @@ public class IngredientController {
 	// this annotation marks this as a GET method
 	// if we need an additional suffix, we can include it like @GetMapping("/suffix")
 	// we're using an optional RequestParam (also referred to as a query parameter) to take in a string by which to filter
+	// just like with PathVariables, if the RequestParam name and the variable name match, you don't need the 'name = "type"' part
 	@GetMapping
 	public ResponseEntity<Iterable<Ingredient>> findAll(@RequestParam(name = "type", required = false) String type) {
 		return service.findAll(type);

@@ -1,5 +1,7 @@
 package com.skillstorm.food.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,6 +36,18 @@ import com.skillstorm.food.services.IngredientService;
 @RequestMapping("/ingredient")
 public class IngredientController {
 	
+	// creating a logger we can use
+	// this logger will give us better feedback than sysout, and is more controllable
+	// we use the Factory Pattern here to generate a Logger from a LoggerFactory
+	// we feed in this class's type to "tie" this logger to this class
+	// can also feed in getClass() or this.getClass() to have the same effect
+	/*
+	 * loggers have five "levels" (shallowest to deepest) -- ERROR, WARN, INFO, DEBUG, TRACE
+	 * when you set the logging level at one of these, you'll see logs at that level and "left"
+	 * when you log a message, you choose the level it goes at
+	 */
+	private Logger logger = LoggerFactory.getLogger(IngredientController.class);
+	
 	// injecting our service like we did with our repository
 	private IngredientService service;
 	
@@ -50,6 +64,7 @@ public class IngredientController {
 	// just like with PathVariables, if the RequestParam name and the variable name match, you don't need the 'name = "type"' part
 	@GetMapping
 	public ResponseEntity<Iterable<Ingredient>> findAll(@RequestParam(name = "type", required = false) String type) {
+		logger.debug("######### This is a lovely little DEBUG log from our findAll() method!");
 		return service.findAll(type);
 	}
 	

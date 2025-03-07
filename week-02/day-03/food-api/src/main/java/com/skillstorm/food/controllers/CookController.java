@@ -11,41 +11,41 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skillstorm.food.dtos.BioDTO;
-import com.skillstorm.food.models.Bio;
-import com.skillstorm.food.services.BioService;
+import com.skillstorm.food.dtos.CookDTO;
+import com.skillstorm.food.models.Cook;
+import com.skillstorm.food.services.CookService;
 
 @RestController
-@RequestMapping("/bio")
-public class BioController {
+@RequestMapping("/cook")
+public class CookController {
 	
-	private BioService service;
+	private CookService service;
 	
-	public BioController(BioService service) {
+	public CookController(CookService service) {
 		this.service = service;
 	}
 	
 	// find all
 	@GetMapping
-	public ResponseEntity<Iterable<Bio>> findAll(@RequestParam(required = false) String startsWith) {
+	public ResponseEntity<Iterable<Cook>> findAll(@RequestParam(required = false) String startsWith) {
 		return service.findAll(startsWith);
 	}
 	
 	// find by id
 	@GetMapping("/{id}")
-	public ResponseEntity<Bio> findById(@PathVariable int id) {
+	public ResponseEntity<Cook> findById(@PathVariable int id) {
 		return service.findById(id);
 	}
 	
 	// create one
 	@PostMapping
-	public ResponseEntity<Bio> createOne(@RequestBody BioDTO dto) {
+	public ResponseEntity<Cook> createOne(@RequestBody CookDTO dto) {
 		return service.createOne(dto);
 	}
 	
 	// update one
 	@PutMapping("/{id}")
-	public ResponseEntity<Bio> updateOne(@PathVariable int id, @RequestBody BioDTO dto) {
+	public ResponseEntity<Cook> updateOne(@PathVariable int id, @RequestBody CookDTO dto) {
 		return service.updateOne(id, dto);
 	}
 	

@@ -64,7 +64,7 @@ public class BioService {
 	// create one
 	public ResponseEntity<Bio> createOne(BioDTO dto) {
 		try {
-			 Bio saved = repo.save(new Bio(0, dto.cookDescription()));
+			 Bio saved = repo.save(new Bio(0, dto.cookDescription(), dto.cook()));
 			 return ResponseEntity.created(new URI(this.baseURL + "bio/" + saved.getId())).body(saved);
 			 
 		} catch (Exception e) {
@@ -76,7 +76,7 @@ public class BioService {
 	public ResponseEntity<Bio> updateOne(int id, BioDTO dto) { 
 		try {
 			if (repo.existsById(id))
-				return ResponseEntity.ok(repo.save(new Bio(id, dto.cookDescription())));
+				return ResponseEntity.ok(repo.save(new Bio(id, dto.cookDescription(), dto.cook())));
 			return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
 		} catch (Exception e) {
 			return ResponseEntity.status(500).build();

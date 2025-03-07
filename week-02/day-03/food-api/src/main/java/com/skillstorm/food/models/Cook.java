@@ -1,5 +1,8 @@
 package com.skillstorm.food.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,6 +38,10 @@ public class Cook {
 	// we DO NOT have to specify the other table -- that is dictated by the type of the variable (Bio)
 	@OneToOne
 	@JoinColumn(name = "bio", referencedColumnName = "id")
+	// we can ignore the entire Bio object like this when printing to JSON
+//	@JsonIgnore
+	// or, we can ignore certain parts of the object
+	@JsonIgnoreProperties("cook")
 	private Bio bio;
 	
 	public Cook() {

@@ -94,7 +94,7 @@ public class IngredientService {
 	public ResponseEntity<Ingredient> createOne(IngredientDTO ingredientDTO) { 
 		try {
 			return ResponseEntity.status(HttpStatus.CREATED)
-								 .body(repo.save(new Ingredient(0, ingredientDTO.ingredientName(), ingredientDTO.ingredientType())));
+								 .body(repo.save(new Ingredient(0, ingredientDTO.ingredientName(), ingredientDTO.ingredientType(), ingredientDTO.recipes())));
 		} catch (Exception e) {
 			return ResponseEntity.status(500).body(null);
 		}
@@ -107,7 +107,7 @@ public class IngredientService {
 	public ResponseEntity<Ingredient> updateOne(int id, IngredientDTO ingredientDTO) {
 		if (repo.existsById(id))
 			return ResponseEntity.status(HttpStatus.OK)
-					 			 .body(repo.save(new Ingredient(id, ingredientDTO.ingredientName(), ingredientDTO.ingredientType())));
+					 			 .body(repo.save(new Ingredient(id, ingredientDTO.ingredientName(), ingredientDTO.ingredientType(), ingredientDTO.recipes())));
 		else
 			return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(null);
 	}

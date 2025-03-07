@@ -15,6 +15,10 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
+  security:
+    user:
+      name: admin
+      password: 11235eureka
 
 server:
   port: 8080
@@ -30,3 +34,10 @@ logging:
 
 # this is a property we're storing here to use in our application
 base-url: localhost:8080/
+
+# exposing additional Spring Boot Actuator endpoints over HTTP
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

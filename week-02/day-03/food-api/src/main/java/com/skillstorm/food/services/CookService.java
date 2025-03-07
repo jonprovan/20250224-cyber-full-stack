@@ -63,7 +63,7 @@ public class CookService {
 	// create one
 	public ResponseEntity<Cook> createOne(CookDTO dto) {
 		try {
-			 Cook saved = repo.save(new Cook(0, dto.firstName(), dto.lastName(), dto.bio()));
+			 Cook saved = repo.save(new Cook(0, dto.firstName(), dto.lastName(), dto.bio(), dto.recipes()));
 			 return ResponseEntity.created(new URI(this.baseURL + "cook/" + saved.getId())).body(saved);
 			 
 		} catch (Exception e) {
@@ -75,7 +75,7 @@ public class CookService {
 	public ResponseEntity<Cook> updateOne(int id, CookDTO dto) { 
 		try {
 			if (repo.existsById(id))
-				return ResponseEntity.ok(repo.save(new Cook(id, dto.firstName(), dto.lastName(), dto.bio())));
+				return ResponseEntity.ok(repo.save(new Cook(id, dto.firstName(), dto.lastName(), dto.bio(), dto.recipes())));
 			return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
 		} catch (Exception e) {
 			return ResponseEntity.status(500).build();

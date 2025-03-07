@@ -14,6 +14,7 @@ public interface RecipeRepository extends CrudRepository<Recipe, Integer> {
 	
 	Iterable<Recipe> findByRecipeNameStartingWith(String startsWith);
 	
+	// @Modifying and @Transactional are required for non-select statements to the database
 	@Query(value = "INSERT INTO recipe_ingredient(recipe_id, ingredient_id, amount) VALUES(?1, ?2, ?3)", nativeQuery = true)
 	@Modifying
 	@Transactional

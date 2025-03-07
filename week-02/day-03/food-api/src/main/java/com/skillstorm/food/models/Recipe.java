@@ -33,7 +33,7 @@ public class Recipe {
 	// from the controlling side, @ManyToOne looks just like @OneToOne
 	@ManyToOne
 	@JoinColumn(name = "cook", referencedColumnName = "id")
-//	@JsonIgnoreProperties("recipes")
+	@JsonIgnoreProperties("recipes")
 	private Cook cook;
 	
 	// many-to-many is a little more complex, because we're using a join table between this class and another
@@ -43,12 +43,14 @@ public class Recipe {
 	@JoinTable(name = "recipe_category",
 			   joinColumns = @JoinColumn(name = "recipe_id"),
 			   inverseJoinColumns = @JoinColumn(name = "category_id"))
+	@JsonIgnoreProperties("recipes")
 	private List<Category> categories;
 	
 	@ManyToMany
 	@JoinTable(name = "recipe_ingredient",
 			   joinColumns = @JoinColumn(name = "recipe_id"),
 			   inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
+	@JsonIgnoreProperties("recipes")
 	private List<Ingredient> ingredients;
 	
 	public Recipe() {

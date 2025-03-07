@@ -1,5 +1,7 @@
 package com.skillstorm.food.models;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -9,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -44,16 +47,23 @@ public class Cook {
 	@JsonIgnoreProperties("cook")
 	private Bio bio;
 	
+	// since this is not the controlling side of the relationship
+	// we just need to say which property of each Recipe is mapping to this Cook
+	@OneToMany(mappedBy = "cook")
+	@JsonIgnoreProperties("cook")
+	private List<Recipe> recipes;
+	
 	public Cook() {
 		super();
 	}
 
-	public Cook(int id, String firstName, String lastName, Bio bio) {
+	public Cook(int id, String firstName, String lastName, Bio bio, List<Recipe> recipes) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.bio = bio;
+		this.recipes = recipes;
 	}
 
 	public int getId() {
@@ -88,9 +98,18 @@ public class Cook {
 		this.bio = bio;
 	}
 
+	public List<Recipe> getRecipes() {
+		return recipes;
+	}
+
+	public void setRecipes(List<Recipe> recipes) {
+		this.recipes = recipes;
+	}
+
 	@Override
 	public String toString() {
-		return "Cook [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", bio=" + bio + "]";
+		return "Cook [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", bio=" + bio + ", recipes="
+				+ recipes + "]";
 	}
 	
 }

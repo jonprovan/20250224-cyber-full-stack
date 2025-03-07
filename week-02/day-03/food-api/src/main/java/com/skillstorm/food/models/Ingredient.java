@@ -1,10 +1,15 @@
 package com.skillstorm.food.models;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 /*
@@ -29,17 +34,22 @@ public class Ingredient {
 	@Column(name = "ingredient_type")
 	private String ingredientType;
 	
+	@ManyToMany(mappedBy = "ingredients")
+	@JsonIgnoreProperties("ingredients")
+	private List<Recipe> recipes;
+	
 	// recommended to use the source menu to auto-generate constructors, getters/setters, toString, etc. to avoid conflicts/errors
 
 	public Ingredient() {
 		super();
 	}
 
-	public Ingredient(int id, String ingredientName, String ingredientType) {
+	public Ingredient(int id, String ingredientName, String ingredientType, List<Recipe> recipes) {
 		super();
 		this.id = id;
 		this.ingredientName = ingredientName;
 		this.ingredientType = ingredientType;
+		this.recipes = recipes;
 	}
 
 	public int getId() {
@@ -66,10 +76,18 @@ public class Ingredient {
 		this.ingredientType = ingredientType;
 	}
 
+	public List<Recipe> getRecipes() {
+		return recipes;
+	}
+
+	public void setRecipes(List<Recipe> recipes) {
+		this.recipes = recipes;
+	}
+
 	@Override
 	public String toString() {
 		return "Ingredient [id=" + id + ", ingredientName=" + ingredientName + ", ingredientType=" + ingredientType
-				+ "]";
+				+ ", recipes=" + recipes + "]";
 	}
 
 }

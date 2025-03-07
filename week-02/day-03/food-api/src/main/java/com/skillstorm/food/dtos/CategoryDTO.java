@@ -1,3 +1,7 @@
 package com.skillstorm.food.dtos;
 
-public record CategoryDTO(String categoryName) {}
+import java.util.List;
+
+import com.skillstorm.food.models.Recipe;
+
+public record CategoryDTO(String categoryName, List<Recipe> recipes) {}

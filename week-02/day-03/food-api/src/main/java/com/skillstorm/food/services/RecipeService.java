@@ -62,6 +62,8 @@ public class RecipeService {
 	}
 	
 	// create one
+	// the extra logic here is because our join table with ingredients has an extra property besides the two foreign keys
+	// categories are handled automatically, but ingredients must be manually inserted
 	public ResponseEntity<Recipe> createOne(RecipeWithIngredientsDTO dto) {
 		try {
 			 Recipe saved = repo.save(new Recipe(0, dto.recipe().recipeName(), dto.recipe().recipeDescription(), 

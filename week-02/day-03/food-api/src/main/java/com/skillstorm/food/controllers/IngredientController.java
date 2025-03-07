@@ -64,7 +64,7 @@ public class IngredientController {
 	// just like with PathVariables, if the RequestParam name and the variable name match, you don't need the 'name = "type"' part
 	@GetMapping
 	public ResponseEntity<Iterable<Ingredient>> findAll(@RequestParam(name = "type", required = false) String type) {
-		logger.debug("######### This is a lovely little DEBUG log from our findAll() method!");
+		logger.debug("******** This is a lovely little DEBUG log from our findAll() method!");
 		return service.findAll(type);
 	}
 	

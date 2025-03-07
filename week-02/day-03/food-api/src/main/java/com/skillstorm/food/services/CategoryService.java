@@ -59,7 +59,7 @@ public class CategoryService {
 	// create one
 	public ResponseEntity<Category> createOne(CategoryDTO dto) {
 		try {
-			 return ResponseEntity.status(HttpStatus.CREATED).body(repo.save(new Category(0, dto.categoryName())));
+			 return ResponseEntity.status(HttpStatus.CREATED).body(repo.save(new Category(0, dto.categoryName(), dto.recipes())));
 			 
 			 // REST standards say you should return a location for the newly-created record
 			 // since you don't know the id beforehand, you won't necessarily know where to find it
@@ -77,7 +77,7 @@ public class CategoryService {
 	public ResponseEntity<Category> updateOne(int id, CategoryDTO dto) { 
 		try {
 			if (repo.existsById(id))
-				return ResponseEntity.ok(repo.save(new Category(id, dto.categoryName())));
+				return ResponseEntity.ok(repo.save(new Category(id, dto.categoryName(), dto.recipes())));
 			return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
 		} catch (Exception e) {
 			return ResponseEntity.status(500).build();

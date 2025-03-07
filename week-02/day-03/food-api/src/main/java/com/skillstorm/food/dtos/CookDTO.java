@@ -1,3 +1,5 @@
 package com.skillstorm.food.dtos;
 
-public record CookDTO(String firstName, String lastName, int bio) {}
+import com.skillstorm.food.models.Bio;
+
+public record CookDTO(String firstName, String lastName, Bio bio) {}

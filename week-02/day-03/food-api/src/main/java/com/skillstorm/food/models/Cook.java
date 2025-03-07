@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,14 +24,24 @@ public class Cook {
 	@Column
 	private String lastName;
 	
-	@Column
-	private int bio;
+	// this is what we'd have if we didn't want to have Hibernate "relate" our classes/objects/records
+//	@Column
+//	private int bio;
+	
+	// but we want to relate our classes and see those related objects when we return this class to the user
+	// this is a one-to-one relationship, so we use @OneToOne
+	// @JoinColumn lays out HOW they're related -- name is the name of the column in this table with the foreign key
+	// referencedColumnName is the name of the column in the other table to which the foreign key refers
+	// we DO NOT have to specify the other table -- that is dictated by the type of the variable (Bio)
+	@OneToOne
+	@JoinColumn(name = "bio", referencedColumnName = "id")
+	private Bio bio;
 	
 	public Cook() {
 		super();
 	}
 
-	public Cook(int id, String firstName, String lastName, int bio) {
+	public Cook(int id, String firstName, String lastName, Bio bio) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -61,11 +73,11 @@ public class Cook {
 		this.lastName = lastName;
 	}
 
-	public int getBio() {
+	public Bio getBio() {
 		return bio;
 	}
 
-	public void setBio(int bio) {
+	public void setBio(Bio bio) {
 		this.bio = bio;
 	}
 

@@ -5,6 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -39,7 +40,7 @@ public class Cook {
 	// @JoinColumn lays out HOW they're related -- name is the name of the column in this table with the foreign key
 	// referencedColumnName is the name of the column in the other table to which the foreign key refers
 	// we DO NOT have to specify the other table -- that is dictated by the type of the variable (Bio)
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "bio", referencedColumnName = "id")
 	// we can ignore the entire Bio object like this when printing to JSON
 //	@JsonIgnore

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tags</title>
+</head>
+<body>
+
+    <!--
+        INLINE vs. BLOCK
+        - an inline tag does NOT go to a new "line" on the page (e.g., italics) and takes up only the space that it takes up
+        - a block tag forces itself onto a new line and takes up the full width
+
+        NON-SEMANTIC vs. SEMANTIC
+        non-semantic tags include span (inline) and div (block)
+        these describe a generic line or block of content
+
+        but there are other tags more specific to particular content
+        we can use these to inform the user/browser what's contained in a tag
+        and, in some cases, provide additional default formatting
+
+        Semantic inline tags with formatting:
+        em (emphasis), used to be i (italics)
+        strong, used to be b (bold)
+        img (images)
+        some form input tags, like button, input, etc.
+        a (anchor) for links
+
+        Semantic block tags with formatting:
+        h1-h6 for headings
+        p (paragraph)
+        ol (ordered list) and ul (unordered list)
+        table
+
+        Semantic block tags WITHOUT formatting (function exactly like div does):
+        main
+        section
+        article
+        header
+        footer
+        nav
+        aside
+
+        Some others:
+        br (break) -- send the next content to a new line
+        hr (horizontal rule) -- a line across the page
+    -->
+
+    <!-- span has no formatting, but strong does -->
+    <span>Some Span Text</span>
+    <strong>Some Strong Text</strong>
+
+    <!-- neither div nor main have formatting -->
+    <div>Some Div Text</div>
+    <main>Some Main Text</main>
+
+    <!-- ...but p does (spacing) -->
+    <p>Some Paragraph Text</p>
+
+    <!-- and ul does (spacing, indentation, bullets) -->
+    <ul>
+        <li>One</li>
+        <li>Two</li>
+        <li>Three</li>
+    </ul>
+    
+</body>
+</html>

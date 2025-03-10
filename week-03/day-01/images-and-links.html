@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Images and Links</title>
+
+    <script>
+        function printCheeseburger() {
+            console.log("CHEEZBRGR AAAAAAHHHH!!!");
+        }
+    </script>
+
+</head>
+<body>
+
+    <!-- we include images as references to the file's location -->
+    <!-- we can either store the image locally or refer to its location on the web -->
+    <!-- local advantages = availability, manipulation, security, possible speed -->
+    <!-- external advantages = possible speed, they're paying for storage/bandwidth -->
+    
+    <!-- the img tag has two key properties, src for the location, alt for alternate text -->
+    <!-- alt is not TECHNICALLY required, but best practice mandates it -->
+    <!-- this is a self-closing tag, it can have a slash before the > or not (HTML4 and prior had /) -->
+
+    <!-- for images stored on your site, use relative paths -->
+    <img src="images/cheeseburger.jpg" alt="One tasty cheeseburger...">
+
+    <!-- for images stored elsewhere, use absolute paths -->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cheeseburger.jpg/640px-Cheeseburger.jpg" alt="One tasty cheeseburger from afar..." style="height: 100px;">
+
+    <!-- for links, we surround whatever we want to be the link with the a tag -->
+    <!-- like with images, use relative paths for local files, absolute paths for external files -->
+    <div>
+        <a href="index.html">My Index Page</a>
+    </div>
+
+    <!-- you can set a target for where the link will open using the target property
+         _blank opens in a new tab -->
+    <div>
+        <a href="https://en.wikipedia.org/wiki/Cheeseburger" target="_blank">Cheeseburgers on Wikipedia</a>
+    </div>
+
+    <!-- you can link to specific anchors to get to particular content on a page -->
+    <div>
+        <a href="https://en.wikipedia.org/wiki/Cheeseburger#References" target="_blank">Cheeseburgers on Wikipedia</a>
+    </div>
+
+    <div>
+        <a href="index.html#fun-anchor">My Index Page's fun-anchor id</a>
+    </div>
+
+
+
+    <!-- we can use buttons as links of a sort -->
+    <!-- you can have a button navigate you to a new page -->
+    <!-- here, we'll just use a button to call a script! -->
+    <button type="button" onclick="printCheeseburger()">CLICK ME PLZ</button>
+
+
+
+    <div style="height: 3000px;">
+        <a href="#fun-anchor">This page's fun-anchor id</a>
+    </div>
+
+    <h6 id="fun-anchor">An anchor on this page!</h6>
+
+    
+    
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!-- this is an HTML comment -->
+<!-- comments DO show up for the user, if they look at your source code in their browser -->
+<!--
+    multi-line comments just have same opener/closer split up
+    index.html is the default starting page for a website
+    the browser will look for it when navigating to a URL
+-->
+
+<!--
+    we start to see tags here
+    some tags are self-closing, like the meta ones below -- these do NOT contain content
+    others require you to close them, like body -- these contain content
+    all tags can contain properties, just like properties of an object
+-->
+
+<!-- this tells the browser that this document is an html document -->
+<!DOCTYPE html>
+
+<!-- a webpage is enclosed in an html tag -->
+<html lang="en">
+
+<!-- the head tag contains other tags that describe the page -->
+<!-- you should NOT put anything in your head tag that's visible -->
+<head>
+    <!-- these are metadata describing the page -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- the title is the text in the tab/browser window -->
+    <title>My First HTML Page</title>
+
+    <!-- you may also see styles in here, in one of two ways -->
+    <!-- styles that are specific to this page -->
+    <style>
+        h1 {
+            color: red;
+        }
+    </style>
+    <!-- or links to external stylesheets -->
+    <link rel="stylesheet" href="css/sample.css">
+
+    <!-- you may also see scripts, also in one of two ways -->
+    <!-- included internally, like this -->
+    <script>
+        function sayHi() {
+            console.log("Hi!");
+        }
+    </script>
+
+    <!-- or links to external scripts -->
+    <script type="text/javascript" src="scripts/sample.js"></script>
+
+</head>
+
+<!-- content that is visible should be in the body tag -->
+<body>
+    
+    <!-- the largest heading -->
+    <h1>My Website's Top Headline</h1>
+    <!-- the second largest heading -- note that the em tag is now fully enclosed, not overlapping from one parent tag to the other -->
+    <h2>And a subhead to <em>go with it!</em></h2>
+    <!-- a paragraph -- note that spaces/breaks after the first are ignored -->
+    <p><em>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, quod magnam! Odio molestias dolorem, facilis porro, aspernatur similique saepe architecto tempore exercitationem esse, assumenda</em> quia aut non accusantium eaque enim.
+    
+    
+    
+    
+    
+    
+    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum veritatis, voluptate, placeat iusto officia exercitationem iste natus aut, repudiandae rerum sint porro quae maxime iure fugit aspernatur molestiae dolorem doloremque.</p>
+    <ol style="height: 3000px;">
+        <li>First Item</li>
+        <li>Second Item</li>
+        <li>Third Item</li>
+    </ol>
+
+    <h6 id="fun-anchor">Some content we linked to via an anchor (id property of a tag)</h6>
+    
+</body>
+
+</html>

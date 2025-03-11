@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tables</title>
+</head>
+<body>
+
+    <!--
+        DO NOT use tables to lay out your page!!
+        we used to do this in the IE days, but not anymore
+        you CAN still use them as actual tables on your page
+        looping through DB records and displaying them as rows makes sense
+
+        tables by default will auto-stretch to fill the contents
+        you can override this to "fix" its size
+
+        the main tag: table
+
+        other table tags within it:
+        - thead = the table's header section
+        - tr = a table row
+        - th = a cell in the header (bold and center-aligned by default)
+        - tbody = the main body of the table
+        - td = a cell in the main part of the table
+        - tfoot = the table's footer section
+    -->
+
+    <table>
+        <thead style="text-align: left;">
+            <tr>
+                <th>ID</th>
+                <th>Ingredient Name</th>
+                <th>Ingredient Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>3</td>
+                <td>Basil</td>
+                <td>Vegetable</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Pulled Pork</td>
+                <td>Meat</td>
+            </tr>
+        </tbody>
+        <tfoot style="font-style: italic;"> <!-- tfoot is not styled differently by default -->
+            <tr>
+                <td>*</td>
+                <td>Two total ingredients</td>
+                <td>Various types</td>
+            </tr>
+        </tfoot>
+    </table>
+    
+</body>
+</html>

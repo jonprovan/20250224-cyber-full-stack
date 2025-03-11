@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Basics</title>
+
+    <!-- using head's style tag -->
+    <style>
+
+        /*
+        a CSS rule has a few key components
+        selector -- what content this applies to
+        curly braces surrounding the individual attributes
+        a series of key-value pair attributes describing what styles to apply
+        */
+
+        /* this selects via tag name */
+        /* body {
+            margin: 0px;
+        } */
+
+        /* tag selectors will apply to ALL applicable tags */
+        /* h2 {
+            color: blue;
+        } */
+
+        /* this one ONLY applies to h2 tags that are within a section tag ANYWHERE */
+        /* section h2 {
+            color: red;
+        } */
+
+        /* this one ONLY applies to h2 tags that are DIRECT CHILDREN of section tags */
+        /* section > h2 {
+            color: green;
+        } */
+
+        /* careful with the order -- if two rules have the same selector,
+           the one later in the file will override the former */
+        /* h2 {
+            color: brown;
+        } */
+
+    </style>
+
+    <!-- importing an external stylesheet -->
+    <link rel="stylesheet" href="css/my-stylesheet.css">
+
+</head>
+<body>
+
+    <!--
+        CSS BASICS
+
+        three places to enter styling information:
+        - inline (in the tag itself)
+        - in a head style tag (this page only)
+        - in an external style sheet (for multiple pages -- PREFERABLE!!)
+    -->
+
+    <!-- inline styling -->
+    <!-- <header style="background-color: blanchedalmond;
+                   font-weight: bold;
+                   font-family: Arial, Helvetica, sans-serif;">
+        MY AWESOME CSS SITE
+    </header> -->
+
+    <header id="page-header">
+        MY AWESOME CSS SITE
+    </header>
+
+    <main>
+        <h1>CSS Basics</h1>
+
+        <!-- placing our image here, so we can float it to the right -->
+        <img src="images/cheeseburger.jpg" alt="Another juicy burg!">
+
+        <h2 class="blue italic">Starting out with CSS!</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod expedita nulla vero non voluptatem eos repudiandae mollitia unde a consequatur neque atque nesciunt, sapiente sequi. Ducimus dolorum numquam nemo praesentium!</p>
+
+        <h2 class="blue italic">Getting more advanced...</h2>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem repellat, consequuntur reiciendis distinctio laboriosam excepturi nam consectetur, omnis, hic nostrum odit veritatis dolores a laudantium porro quidem et minus nulla.</p>
+
+        <section>
+            <h2 class="blue italic">Final thoughts</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente aut nisi et sit mollitia eius numquam dolores, sequi quisquam, voluptas ratione quae architecto quos enim, iure aspernatur perspiciatis cupiditate rem?</p>
+            <div>
+                <h2 class="blue italic">Final, final thoughts for real!</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga dolorum qui cupiditate non atque sit delectus recusandae.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer id="page-footer" class="italic">
+        &copy;2025 SkillStorm Cyber Full-Stack 
+    </footer>
+    
+</body>
+</html>

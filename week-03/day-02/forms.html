@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms</title>
+</head>
+<body>
+
+    <!--
+        FORMS IN HTML
+
+        a document you fill out and submit
+        anything to which you provide information and submit it
+        a full form, a search bar, a login screen, etc.
+
+        HTML has form functionality in it
+        generally, though, we'll be intercepting that data via JS
+        rather than submitting it via HTML
+
+        there are many different types of inputs for various data
+        we can take in strings, numbers, colors, dates, etc.
+        also checkboxes, radio buttons, lists to select from, etc.
+    -->
+
+    <!-- we won't use these properties in JS, just for HTML form functionality
+         method is GET or POST, generally
+         action is the URL to hit, the PHP script to run, etc. -- where the data is going
+         this form simply makes a GET request to Google, which takes us to their page -->
+    <form method="get" action="https://www.google.com">
+        <button type="submit">GO TO GOOGLE</button>
+    </form>
+
+    <!-- don't use these this way! CSS methods are better -->
+    <br><br>
+
+    <!-- this form will send data somewhere -->
+    <form method="post" action="https://www.w3schools.com/action_page.php">
+        <div>
+            <!-- each input should have a label identifying the field -->
+            <!-- the for property refers to the id of the input -->
+            <label for="firstName">First Name: </label>
+            <!-- the id should match the label's for property -->
+            <!-- name is the key to which the input value is associated -->
+            <!-- a text type simply takes in a string -->
+            <input id="firstName" name="firstName" type="text" placeholder="Enter first name..." maxlength="10">
+        </div>
+
+        <div>
+            <label for="lastName">Last Name: </label>
+            <input id="lastName" name="lastName" type="text" placeholder="Enter last name...">
+        </div>
+
+        <!-- the number type restricts input to numbers -->
+        <!-- you can set min, max, and an increment value -->
+        <div>
+            <label for="age">Age: </label>
+            <input id="age" name="age" type="number" min="5" max="100" step="5">
+        </div>
+
+        <!-- taking in a sortable date YYYY-MM-DD -->
+        <div>
+            <label for="birthday">Birthday: </label>
+            <input id="birthday" name="birthday" type="date">
+        </div>
+
+        <!-- taking in a color's hex value #xxxxxx via a color picker -->
+        <div>
+            <label for="favoriteColor">Favorite Color: </label>
+            <input id="favoriteColor" name="favoriteColor" type="color">
+        </div>
+
+        <!-- checkboxes are used for boolean on/off choices -->
+        <div>
+            <label for="lovesPokemon">Do you love Pokemon?</label>
+            <input id="lovesPokemon" name="lovesPokemon" type="checkbox" value="true">
+        </div>
+
+        <!-- for mutually-exclusive multiple choices, use radio buttons -->
+        <!-- they MUST all have the same name, and values are assigned with the value prop -->
+        <div>
+            <h4>Favorite Pokemon</h4>
+            <div>
+                <label for="salamence">Salamence</label>
+                <input id="salamence" name="favoritePokemon" type="radio" value="salamence">
+            </div>
+            <div>
+                <label for="pikachu">Pikachu</label>
+                <input id="pikachu" name="favoritePokemon" type="radio" value="pikachu" checked="true">
+            </div>
+            <div>
+                <label for="zapdos">Zapdos</label>
+                <input id="zapdos" name="favoritePokemon" type="radio" value="zapdos">
+            </div>            
+        </div>
+
+        <!-- for a dropdown with individual choices, use a select -->
+        <!-- the select contains several options, each with their own text/value -->
+        <div>
+            <label for="favoriteCuisine">Favorite Cuisine: </label>
+            <select id="favoriteCuisine" name="favoriteCuisine">
+                <option value="">Choose your favorite cuisine...</option>
+                <option value="french">French</option>
+                <option value="indian" selected="selected">Indian</option>
+                <option value="italian">Italian</option>
+                <option value="mediterranean">Mediterranean</option>
+                <option value="thai">Thai</option>
+            </select>
+        </div>
+
+        <br>
+        
+        <!-- this button type clears values back to their defaults -->
+        <button type="reset">RESET FORM</button>
+        <!-- this button type submits the form -- CAREFUL about page refresh in SPAs!! -->
+        <button type="submit">TEST FORM DATA</button>
+    </form>
+    
+</body>
+</html>

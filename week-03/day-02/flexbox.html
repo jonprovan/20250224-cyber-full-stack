@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox</title>
+
+    <style>
+
+        body {
+            margin: 0px;
+        }
+
+        section {
+            /* designates this as a flexbox */
+            display: flex;
+            width: 100%;
+            /* can adjust spacing/alignment */
+            justify-content: space-between;
+            /* can set column/row and order */
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        div {
+            /* setting a manual color, with transparency */
+            background-color: rgba(196, 255, 221, 0.5);
+            border: 2px solid black;
+            padding: 3em;
+        }
+    </style>
+
+</head>
+<body>
+
+    <!--
+        FLEXBOX IN CSS
+
+        a flexbox is a flexible box
+        it gives us some fun control over the elements within it:
+            how they align, their order, their spacing, etc.
+    -->
+
+    <section>
+
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+
+    </section>
+    
+</body>
+</html>

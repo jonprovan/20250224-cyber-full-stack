@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Box Model</title>
+
+    <style>
+        body {
+            margin: 0;
+        }
+
+        div {
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            padding: 25px;
+            background-color: pink;
+            border: 5px solid purple;
+
+            /* margin, padding, and border have overloaded attributes
+               one param = all around
+               two params = top/bottom left/right
+               three params = top left/right bottom
+               four params = top right bottom left */
+            margin: 25px 0px 0px 25px;
+            display: inline-block;
+        }
+
+        /* sometimes tags have default styling you can override
+           p, for instance, has margin by default on top/bottom */
+        p {
+            font-size: 14px;
+            margin: 0px;
+            padding: 1em;
+            width: 200px;
+            /* height: 200px; */
+        }
+
+        /*
+            ABSOLUTE VS RELATIVE UNITS
+            For font sizes, images and sometimes containers = absolute
+            For padding and sometimes margin (generally) = relative
+
+            absolute = pixels, like 200px
+            relative:
+            - %, like 80% = percent of the containing element
+            - vh or vw, like 80vh = percent of the user's window height/width
+            - em, like 0.5em = relative to the current font size
+            - rem, like 0.5 rem = relative to the root font size
+        */
+
+    </style>
+</head>
+<body>
+
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia officiis velit dolorem incidunt atque asperiores voluptas accusantium autem harum, labore possimus corrupti voluptatem repellat nobis facere, nostrum esse non ullam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, nihil animi quae voluptates quos adipisci explicabo reprehenderit consequatur eius vel, expedita ducimus qui nemo id illum architecto amet pariatur? Atque! Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum reiciendis quis excepturi nobis nostrum veniam unde minus nemo sapiente provident corrupti eos, itaque quibusdam ducimus, deleniti quam facere et laudantium.</p>
+
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+
+    
+    
+</body>
+</html>

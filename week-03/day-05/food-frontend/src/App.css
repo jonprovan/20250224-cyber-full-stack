@@ -1,3 +1,47 @@
+main {
+  padding: 20px;
+}
+
+main h1 {
+  margin: 0px 0px 12px 0px;
+}
+
+main table {
+  text-align: left;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+
+main table th {
+  min-width: 100px;
+  background-color: lightblue;
+}
+
+main table th:first-child {
+  min-width: 40px;
+}
+
+main table td {
+  vertical-align: top;
+}
+
+.ingredient {
+  background-color: rgb(167, 192, 239);
+  display: inline-block;
+  margin: 8px 8px 0px 0px;
+  width: 200px;
+  padding: .5em 1em;
+  border-radius: 10px;
+}
+
+.ingredient h3, .ingredient ul {
+  margin: 0px;
+}
+
+.ingredient ul {
+  margin-bottom: 10px;
+}
+
 /* header {
   background-color: rgb(243, 225, 203);
   text-align: center;

@@ -1,5 +1,6 @@
 import { NavBar } from "./NavBar";
 // importing a custom stylesheet for this component and any components nested in it
+// NOTE -- this seems to apply globally...will take a look!
 import '../css/header.css';
 
 // this will be a component that we can import elsewhere

@@ -1,15 +1,35 @@
-import logo from './logo.svg';
 // importing an external stylesheet
 // you can import any others you like here or in any sub-component
 import './App.css';
-import { Header } from './components/Header';
+import { BrowserRouter, Route, Routes } from 'react-router';
+import { Frame } from './pages/Frame';
+import { Bios } from './pages/Bios';
+import { Categories } from './pages/Categories';
+import { Cooks } from './pages/Cooks';
+import { Ingredients } from './pages/Ingredients';
+import { Recipes } from './pages/Recipes';
 
 // each component is a function
 function App() {
   return (
     <>
-      {/* inserting our Header component directly here */}
-      <Header />
+      {/* we wrap our content in the BrowserRouter to enable SPA routing for pages */}
+      <BrowserRouter>
+        {/* inside the BrowserRouter, we lay out individual routes */}
+        <Routes>
+          {/* each route specifies a path and a component to route to the outlet
+              when the path is either entered by the user or triggered internally */}
+          <Route path="/" element={<Frame/>}>
+            {/* these nested routes will retain the prefix from the parent route */}
+            <Route index element={<Bios/>}/>
+            <Route path="bios" element={<Bios/>}/>
+            <Route path="categories" element={<Categories/>}/>
+            <Route path="cooks" element={<Cooks/>}/>
+            <Route path="ingredients" element={<Ingredients/>}/>
+            <Route path="recipes" element={<Recipes/>}/>
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </>
 
 

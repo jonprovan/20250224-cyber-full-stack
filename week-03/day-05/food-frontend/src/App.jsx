@@ -3,10 +3,10 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { Frame } from './pages/Frame';
-import { Bios } from './pages/Bios';
+import { Bios } from './pages/Bios.tsx';
 import { Categories } from './pages/Categories';
 import { Cooks } from './pages/Cooks';
-import { Ingredients } from './pages/Ingredients';
+import { Ingredients } from './pages/Ingredients.tsx';
 import { Recipes } from './pages/Recipes';
 
 // each component is a function

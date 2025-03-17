@@ -1,7 +1,8 @@
 // importing this to make our API requests
 import axios from 'axios';
 import { useState } from 'react';
-import { Bio } from '../models/Bio';
+import { Bio } from '../models/Bio.ts';
+import React from 'react';
 
 // this component includes a table of all our DB Bios
 // we're using our local model for a Bio
@@ -19,7 +20,7 @@ export const Bios = () => {
     const getAllBios = async () => {
         await axios.get('http://localhost:8080/bio')
                    .then(response => {
-                        setBios(response.data.map(bio => {
+                        setBios(response.data.map((bio: any) => {
                             return {
                                 bio: new Bio(bio.id, bio.cookDescription),
                                 cookName: bio.cook?.firstName
@@ -45,7 +46,7 @@ export const Bios = () => {
                 </thead>
                 <tbody>
                     {
-                        bios.map(bio => {
+                        bios.map((bio: any) => {
                             return (
                                 <tr key={ bio.bio.id }>
                                     <td>{ bio.bio.id }</td>

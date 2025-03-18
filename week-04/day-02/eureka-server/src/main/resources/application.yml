@@ -1,0 +1,20 @@
+# the names for the servers start to matter with microservices
+# because we'll be requesting servers by name, NOT by URL/IP
+spring:
+  application:
+    name: eureka-server
+
+# this is the standard port for a Eureka server -- use it unless you have a compelling reason not to
+server:
+  port: 8761
+
+# setting up config for this Eureka server
+# we do NOT want this server to accept requests from other servers, so we don't register it
+# we also do NOT want this server to ask itself for a list of available servers
+# and, we need to set up a default location for this server, in case a client requests Eureka but isn't specific
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      default-zone: http://localhost:8761/eureka

@@ -1,0 +1,14 @@
+# the name of this service MUST match the name of the load balancer to which we routed in our gateway!!
+spring:
+  application:
+    name: vehicle-service
+
+# since we're running on localhost, make sure your ports are unique!
+server:
+  port: 8083
+
+# we DO want this service to register with Eureka and fetch the list of registered services
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka

@@ -1,0 +1,26 @@
+# since this server WILL show up in the Eureka list, note that this name is what will appear there as the service name
+# each route has a unique id, a URI for the Eureka server load balancer for that service, and a path predicate for endpoints that will route there
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+      - id: vehicle-service-route
+        uri: lb://vehicle-service
+        predicates:
+        - Path=/vehicle/**
+      - id: category-service-route
+        uri: lb://category-service
+        predicates:
+        - Path=/category/**
+
+# a typical gateway port
+server:
+  port: 9000
+
+# we DO want this service to register with Eureka and fetch the list of registered services
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka

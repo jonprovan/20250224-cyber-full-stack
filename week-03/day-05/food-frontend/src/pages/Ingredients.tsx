@@ -16,11 +16,12 @@ export const Ingredients = () => {
     // empty array will run only on the initial render
     // if the array has variable values, it will run only when those change
     useEffect(() => {
-        getAllIngredients();
+        getAllIngredients(null);
     }, []);
 
     // adding headers here
-    const getAllIngredients = async () => {
+    const getAllIngredients = async (event: any) => {
+        event.preventDefault();
 
         // create a header object
         let myHeaders: AxiosHeaders = new AxiosHeaders();
@@ -31,7 +32,13 @@ export const Ingredients = () => {
         // then attach the headers to your request as part of the config/options block
         // for get/delete, it's the second parameter
         // for post/put, it's the third parameter, after the body
-        await axios.get('http://localhost:8080/ingredient', {headers: myHeaders})
+        // you can also attach any query parameters in the options block
+        // here, we're using our filter string to add an optional type parameter
+        await axios.get('http://localhost:8080/ingredient', { headers: myHeaders,
+                                                              params: {
+                                                                type: typeFilter.current.value || null
+                                                              }
+         })
                    .then(response => {
                         setIngredients(response.data.map((ingredient: any) => {
                             return new Ingredient(ingredient.id, 
@@ -40,6 +47,9 @@ export const Ingredients = () => {
                         }));
                    }).catch(error => console.log(error));
     }
+
+    // holding our filter string value from the filter form
+    const typeFilter: any = useRef('');
 
     // connecting form fields to JS variables with useRef
     // as the user types/deletes, the field value will be tied to these variables
@@ -55,7 +65,7 @@ export const Ingredients = () => {
                          { ingredientName: addFormName.current.value,
                            ingredientType: addFormType.current.value }
         ).then(async () => {
-            await getAllIngredients();
+            await getAllIngredients(null);
         })
     }
 
@@ -64,7 +74,7 @@ export const Ingredients = () => {
                          { ingredientName: ingredient.ingredientName,
                            ingredientType: ingredient.ingredientType }
         ).then(async () => {
-            await getAllIngredients();
+            await getAllIngredients(null);
         })
     }
 
@@ -75,7 +85,7 @@ export const Ingredients = () => {
     const deleteIngredient = async (id: number) => {
         await axios.delete(`http://localhost:8080/ingredient/${id}`)
                    .then(async () => {
-                        await getAllIngredients();
+                        await getAllIngredients(null);
                    });
     }
 
@@ -87,6 +97,14 @@ export const Ingredients = () => {
             {/* <div>
                 <button onClick={() => getAllIngredients()}>GET ALL</button>
             </div> */}
+
+            <form onSubmit={getAllIngredients}>
+                <div>
+                    <label htmlFor="typeFilter">Type to filter by: </label>
+                    <input type="text" id="typeFilter" name="typeFilter" ref={typeFilter} />
+                </div>
+                <input type="submit" value={'Filter'} />
+            </form>
 
             <form onSubmit={addIngredient}>
                 <h3>Add Ingredient</h3>

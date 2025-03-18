@@ -56,6 +56,7 @@ public class CategoryController {
 		HttpEntity<Set<String>> entity = new HttpEntity<>(body, headers);
 		
 		// executing the RestTemplate call to the other service
+		// parameters = (URL to hit, HTTP method, entity with body and/or headers, class for what's returned)
 		return rt.exchange("http://localhost:8081/vehicle/bycategory", HttpMethod.POST, entity, Vehicle[].class);
 		
 	}
